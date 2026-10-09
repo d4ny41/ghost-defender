@@ -41,8 +41,17 @@ def is_no_intercept(row) -> bool:
 def is_true(value) -> bool:
     """reached_carrier may come back from CSV as bool or as a string."""
     if isinstance(value, str):
-        return value.strip().lower() == "true"
+        return value.strip().lower() in ("true", "1")
+    if pd.isna(value):
+        return False
     return bool(value)
+
+
+def name_or_dash(value) -> str:
+    """Player name, or an em dash if missing."""
+    if pd.isna(value) or str(value).strip() == "":
+        return "—"
+    return str(value)
 
 
 def fmt(value, decimals: int = 2) -> str:
@@ -121,12 +130,13 @@ with metrics_col:
     m1.metric("Real defender distance (yd)", fmt(play["real_dist"]))
     m2.metric("Ghost distance (yd)", fmt(play["ghost_dist"]))
     m3.metric("Time to intercept (s)", fmt(play["t_intercept"]))
-    m4.metric(
-        f"Ghost speed (yd/s) [{play['speed_source']}]",
-        fmt(play["ghost_speed"], 1),
-    )
+    ghost_speed = fmt(play["ghost_speed"], 1)
+    if ghost_speed != "—" and pd.notna(play["speed_source"]):
+        ghost_speed = f"{ghost_speed} ({play['speed_source']})"
+    m4.metric("Ghost speed (yd/s)", ghost_speed)
     st.markdown(
-        f"Defender: {play['defender_name']} · Ball carrier: {play['carrier_name']}"
+        f"Defender: {name_or_dash(play['defender_name'])} · "
+        f"Ball carrier: {name_or_dash(play['carrier_name'])}"
     )
 
 st.plotly_chart(draw_field(), width="stretch")
