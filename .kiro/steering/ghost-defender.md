@@ -177,13 +177,17 @@ Plays that cannot be processed at all are skipped and logged, never written.
 
 Person 1 fills this in after inspecting the files. Until then, inspect the data rather than guessing.
 
-- Tracking file name(s): TODO
-- Team column name and values: TODO
-- How the football is labelled: TODO
-- plays.csv has possessionTeam / defensiveTeam: TODO
-- plays.csv has ballCarrierId: TODO
-- plays.csv has playDescription: TODO
-- Exact event names (catch, tackle, out of bounds, touchdown, fumble): TODO
+- Raw files are currently in `.kiro/steering/data/raw/`, not `data/raw/` (which is empty). Files: `games.csv`, `players.csv`, `plays.csv`, `pffScoutingData.csv`, and `tracking/tracking_<gameId>.csv` (122 files, one per game, 5-9 MB each). This is the 2021 season, pass plays only (8,557 plays).
+- Tracking columns: gameId, playId, nflId, frameId, time, jerseyNumber, team, playDirection, x, y, s, a, dis, o, dir, event. There is NO `displayName` column: player names come from `players.csv` (nflId -> displayName). `nflId` is float because the football's is null.
+- Team column name and values: `team`. Values are the club abbreviation (e.g. `TB`, `DAL`) or `football`. There is no home/away label. Offence vs defence must come from `plays.csv` possessionTeam / defensiveTeam.
+- How the football is labelled: `team == "football"`, `nflId` null, `jerseyNumber` null. It is the only row type with null nflId.
+- plays.csv has possessionTeam / defensiveTeam: yes, both.
+- plays.csv has ballCarrierId: NO. There is no ball-carrier column anywhere. The carrier must be derived (e.g. the football's nearest offensive player at the catch frame, or the targeted receiver from `pffScoutingData.csv`, whose `pff_role` is one of Pass, Pass Route, Pass Block, Pass Rush, Coverage; there is no "Targeted Receiver" role).
+- plays.csv has playDescription: yes, `playDescription`. Other useful plays.csv columns: passResult (C, I, S, R, IN), playResult, absoluteYardlineNumber.
+- Exact event names: catch = `pass_outcome_caught`; tackle = `tackle`; out of bounds = `out_of_bounds`; fumble = `fumble` (also `fumble_offense_recovered`, `qb_strip_sack`); touchdown = NO event exists (404 plays mention TOUCHDOWN in playDescription only). Other events: ball_snap, autoevent_ballsnap, pass_forward, autoevent_passforward, pass_arrived, pass_tipped, autoevent_passinterrupted, pass_outcome_incomplete, dropped_pass, first_contact, handoff, lateral, run, play_action, qb_sack, man_in_motion, shift, line_set, huddle_break_offense, penalty_flag.
+- Event coverage is very sparse across all 122 files: `pass_outcome_caught` appears in only 23 plays, `tackle` in 3, `out_of_bounds` in 1, `fumble` in 17. None of the 23 caught plays has a tackle, out_of_bounds or fumble event, so every one would fall back to `end_event = "last_frame"` under the current window rules. `pass_arrived` (367 plays) and `first_contact` (80 plays) are much more common.
+- Events are repeated on every player's row for that frame (23 rows per frame), so count plays, not rows.
+- Not yet checked: whether `x`/`y` units, `dir` convention and 10 fps match the Conventions section.
 
 ## Working rules for the agent
 
