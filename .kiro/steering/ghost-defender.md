@@ -43,6 +43,7 @@ app.py             Streamlit app
 - `s` is speed in yards per second. `dir` is the direction of motion in degrees, measured clockwise from the +y axis: 0 = +y, 90 = +x, 180 = −y, 270 = −x.
 - Velocity from `s` and `dir`: `vx = s · sin(radians(dir))`, `vy = s · cos(radians(dir))`.
 - Tracking runs at 10 frames per second, so consecutive frames are `DT = 0.1` s apart.
+- All scripts read raw data from `data/raw/` (`plays.csv`, `players.csv`, `tracking/tracking_<gameId>.csv`). No other raw-data location is used.
 - Constants, defined once at the top of `physics.py`: `DT = 0.1`, `CONTACT_RADIUS = 1.0` (yards), `LEAGUE_MAX_SPEED = 8.5` (yd/s).
 
 ## Core maths
@@ -83,9 +84,13 @@ After reaching `I` the ghost stays at `I`. If `t = 0`, the ghost is at `I` on ev
 
 ### Play window
 
-- Catch frame: the first frame whose event is the catch event (`pass_outcome_caught`).
-- End frame: the first frame at or after the catch frame whose event is in `END_EVENTS` (tackle, out of bounds, touchdown, fumble — exact names in the schema notes). If none, the last frame of the play, with `end_event = "last_frame"`.
-- The window is every frame from the catch frame to the end frame, inclusive. Skip plays whose window has fewer than 2 frames.
+- Start frame (called the "catch frame" throughout this file, and stored as `catch_frameId`): the first frame whose event is either `pass_arrived` or `pass_outcome_caught`, whichever appears first in the play.
+- End frame: the first frame at or after the start frame whose event is in `END_EVENTS = {"first_contact", "tackle", "out_of_bounds"}`. If none, the last frame of the play, with `end_event = "last_frame"`. Touchdown and fumble events are not used.
+- The window is every frame from the start frame to the end frame, inclusive. Skip plays whose window has fewer than 2 frames.
+
+### Ball carrier
+
+`plays.csv` has no ball-carrier column, so the carrier is derived for every play. At the start frame (the exact first frame of the window), the carrier is the player on the `possessionTeam` with the minimum Euclidean distance (from `x`, `y`) to the football (`team == "football"`) in that same frame. The carrier is fixed for the whole window. The football is never a candidate.
 
 ### Wasted Yards
 
@@ -177,15 +182,15 @@ Plays that cannot be processed at all are skipped and logged, never written.
 
 Person 1 fills this in after inspecting the files. Until then, inspect the data rather than guessing.
 
-- Raw files are currently in `.kiro/steering/data/raw/`, not `data/raw/` (which is empty). Files: `games.csv`, `players.csv`, `plays.csv`, `pffScoutingData.csv`, and `tracking/tracking_<gameId>.csv` (122 files, one per game, 5-9 MB each). This is the 2021 season, pass plays only (8,557 plays).
+- Raw files are in `data/raw/`. Files: `games.csv`, `players.csv`, `plays.csv`, `pffScoutingData.csv`, and `tracking/tracking_<gameId>.csv` (122 files, one per game, 5-9 MB each). This is the 2021 season, pass plays only (8,557 plays).
 - Tracking columns: gameId, playId, nflId, frameId, time, jerseyNumber, team, playDirection, x, y, s, a, dis, o, dir, event. There is NO `displayName` column: player names come from `players.csv` (nflId -> displayName). `nflId` is float because the football's is null.
 - Team column name and values: `team`. Values are the club abbreviation (e.g. `TB`, `DAL`) or `football`. There is no home/away label. Offence vs defence must come from `plays.csv` possessionTeam / defensiveTeam.
 - How the football is labelled: `team == "football"`, `nflId` null, `jerseyNumber` null. It is the only row type with null nflId.
 - plays.csv has possessionTeam / defensiveTeam: yes, both.
-- plays.csv has ballCarrierId: NO. There is no ball-carrier column anywhere. The carrier must be derived (e.g. the football's nearest offensive player at the catch frame, or the targeted receiver from `pffScoutingData.csv`, whose `pff_role` is one of Pass, Pass Route, Pass Block, Pass Rush, Coverage; there is no "Targeted Receiver" role).
+- plays.csv has ballCarrierId: NO. There is no ball-carrier column anywhere. The carrier is derived as specified in "Ball carrier" under Core maths.
 - plays.csv has playDescription: yes, `playDescription`. Other useful plays.csv columns: passResult (C, I, S, R, IN), playResult, absoluteYardlineNumber.
 - Exact event names: catch = `pass_outcome_caught`; tackle = `tackle`; out of bounds = `out_of_bounds`; fumble = `fumble` (also `fumble_offense_recovered`, `qb_strip_sack`); touchdown = NO event exists (404 plays mention TOUCHDOWN in playDescription only). Other events: ball_snap, autoevent_ballsnap, pass_forward, autoevent_passforward, pass_arrived, pass_tipped, autoevent_passinterrupted, pass_outcome_incomplete, dropped_pass, first_contact, handoff, lateral, run, play_action, qb_sack, man_in_motion, shift, line_set, huddle_break_offense, penalty_flag.
-- Event coverage is very sparse across all 122 files: `pass_outcome_caught` appears in only 23 plays, `tackle` in 3, `out_of_bounds` in 1, `fumble` in 17. None of the 23 caught plays has a tackle, out_of_bounds or fumble event, so every one would fall back to `end_event = "last_frame"` under the current window rules. `pass_arrived` (367 plays) and `first_contact` (80 plays) are much more common.
+- Event coverage is sparse across all 122 files: `pass_outcome_caught` appears in only 23 plays, `tackle` in 3, `out_of_bounds` in 1, `fumble` in 17, `pass_arrived` in 367 and `first_contact` in 80. This is why the window starts at `pass_arrived` or `pass_outcome_caught` and ends at `first_contact`, `tackle` or `out_of_bounds`, falling back to the last frame of the play.
 - Events are repeated on every player's row for that frame (23 rows per frame), so count plays, not rows.
 - Not yet checked: whether `x`/`y` units, `dir` convention and 10 fps match the Conventions section.
 
