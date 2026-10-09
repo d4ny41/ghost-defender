@@ -1,331 +1,273 @@
 gameId,playId,frameId,t,player_type,nflId,displayName,x,y
-1,1,1,0.0,Carrier,101,Mock Carrier,60.0,20.0
-1,1,1,0.0,Ghost Defender,201,Ghost,70.0,35.0
-1,1,1,0.0,Real Defender,201,Mock Defender,70.0,35.0
-1,1,2,0.1,Carrier,101,Mock Carrier,60.7,20.0
-1,1,2,0.1,Ghost Defender,201,Ghost,70.1804,34.2206
-1,1,2,0.1,Real Defender,201,Mock Defender,69.5784,34.3201
-1,1,3,0.2,Carrier,101,Mock Carrier,61.4,20.0
-1,1,3,0.2,Ghost Defender,201,Ghost,70.3608,33.4412
-1,1,3,0.2,Real Defender,201,Mock Defender,69.1817,33.6254
-1,1,4,0.3,Carrier,101,Mock Carrier,62.1,20.0
-1,1,4,0.3,Ghost Defender,201,Ghost,70.5412,32.6618
-1,1,4,0.3,Real Defender,201,Mock Defender,68.8128,32.9155
-1,1,5,0.4,Carrier,101,Mock Carrier,62.8,20.0
-1,1,5,0.4,Ghost Defender,201,Ghost,70.7216,31.8824
-1,1,5,0.4,Real Defender,201,Mock Defender,68.4751,32.1903
-1,1,6,0.5,Carrier,101,Mock Carrier,63.5,20.0
-1,1,6,0.5,Ghost Defender,201,Ghost,70.902,31.103
-1,1,6,0.5,Real Defender,201,Mock Defender,68.1728,31.4496
-1,1,7,0.6,Carrier,101,Mock Carrier,64.2,20.0
-1,1,7,0.6,Ghost Defender,201,Ghost,71.0824,30.3236
-1,1,7,0.6,Real Defender,201,Mock Defender,67.9106,30.6938
-1,1,8,0.7,Carrier,101,Mock Carrier,64.9,20.0
-1,1,8,0.7,Ghost Defender,201,Ghost,71.2628,29.5442
-1,1,8,0.7,Real Defender,201,Mock Defender,67.6938,29.9237
-1,1,9,0.8,Carrier,101,Mock Carrier,65.6,20.0
-1,1,9,0.8,Ghost Defender,201,Ghost,71.4432,28.7649
-1,1,9,0.8,Real Defender,201,Mock Defender,67.5286,29.141
-1,1,10,0.9,Carrier,101,Mock Carrier,66.3,20.0
-1,1,10,0.9,Ghost Defender,201,Ghost,71.6236,27.9855
-1,1,10,0.9,Real Defender,201,Mock Defender,67.4221,28.3481
-1,1,11,1.0,Carrier,101,Mock Carrier,67.0,20.0
-1,1,11,1.0,Ghost Defender,201,Ghost,71.804,27.2061
-1,1,11,1.0,Real Defender,201,Mock Defender,67.3817,27.5491
-1,1,12,1.1,Carrier,101,Mock Carrier,67.7,20.0
-1,1,12,1.1,Ghost Defender,201,Ghost,71.9844,26.4267
-1,1,12,1.1,Real Defender,201,Mock Defender,67.4154,26.7498
-1,1,13,1.2,Carrier,101,Mock Carrier,68.4,20.0
-1,1,13,1.2,Ghost Defender,201,Ghost,72.1649,25.6473
-1,1,13,1.2,Real Defender,201,Mock Defender,67.5309,25.9582
-1,1,14,1.3,Carrier,101,Mock Carrier,69.1,20.0
-1,1,14,1.3,Ghost Defender,201,Ghost,72.3453,24.8679
-1,1,14,1.3,Real Defender,201,Mock Defender,67.7346,25.1846
-1,1,15,1.4,Carrier,101,Mock Carrier,69.8,20.0
-1,1,15,1.4,Ghost Defender,201,Ghost,72.5257,24.0885
-1,1,15,1.4,Real Defender,201,Mock Defender,68.0307,24.4414
-1,1,16,1.5,Carrier,101,Mock Carrier,70.5,20.0
-1,1,16,1.5,Ghost Defender,201,Ghost,72.7061,23.3091
-1,1,16,1.5,Real Defender,201,Mock Defender,68.4194,23.7422
-1,1,17,1.6,Carrier,101,Mock Carrier,71.2,20.0
-1,1,17,1.6,Ghost Defender,201,Ghost,72.8865,22.5297
-1,1,17,1.6,Real Defender,201,Mock Defender,68.8965,23.1001
-1,1,18,1.7,Carrier,101,Mock Carrier,71.9,20.0
-1,1,18,1.7,Ghost Defender,201,Ghost,73.0669,21.7503
-1,1,18,1.7,Real Defender,201,Mock Defender,69.4532,22.5255
-1,1,19,1.8,Carrier,101,Mock Carrier,72.6,20.0
-1,1,19,1.8,Ghost Defender,201,Ghost,73.2473,20.9709
-1,1,19,1.8,Real Defender,201,Mock Defender,70.0771,22.0248
-1,1,20,1.9,Carrier,101,Mock Carrier,73.3,20.0
-1,1,20,1.9,Ghost Defender,201,Ghost,73.4277,20.1915
-1,1,20,1.9,Real Defender,201,Mock Defender,70.7545,21.5992
-1,1,21,2.0,Carrier,101,Mock Carrier,74.0,20.0
-1,1,21,2.0,Ghost Defender,201,Ghost,73.472,20.0
-1,1,21,2.0,Real Defender,201,Mock Defender,71.4721,21.2456
-1,1,22,2.1,Carrier,101,Mock Carrier,74.7,20.0
-1,1,22,2.1,Ghost Defender,201,Ghost,73.472,20.0
-1,1,22,2.1,Real Defender,201,Mock Defender,72.2185,20.9576
-1,1,23,2.2,Carrier,101,Mock Carrier,75.4,20.0
-1,1,23,2.2,Ghost Defender,201,Ghost,73.472,20.0
-1,1,23,2.2,Real Defender,201,Mock Defender,72.9846,20.727
-1,1,24,2.3,Carrier,101,Mock Carrier,76.1,20.0
-1,1,24,2.3,Ghost Defender,201,Ghost,73.472,20.0
-1,1,24,2.3,Real Defender,201,Mock Defender,73.7636,20.5452
-1,1,25,2.4,Carrier,101,Mock Carrier,76.8,20.0
-1,1,25,2.4,Ghost Defender,201,Ghost,73.472,20.0
-1,1,25,2.4,Real Defender,201,Mock Defender,74.551,20.4038
-1,1,26,2.5,Carrier,101,Mock Carrier,77.5,20.0
-1,1,26,2.5,Ghost Defender,201,Ghost,73.472,20.0
-1,1,26,2.5,Real Defender,201,Mock Defender,75.3436,20.2953
-1,1,27,2.6,Carrier,101,Mock Carrier,77.995,20.495
-1,1,27,2.6,Ghost Defender,201,Ghost,73.472,20.0
-1,1,27,2.6,Real Defender,201,Mock Defender,76.1414,20.3554
-1,1,28,2.7,Carrier,101,Mock Carrier,78.4899,20.9899
-1,1,28,2.7,Ghost Defender,201,Ghost,73.472,20.0
-1,1,28,2.7,Real Defender,201,Mock Defender,76.9137,20.564
-1,1,29,2.8,Carrier,101,Mock Carrier,78.9849,21.4849
-1,1,29,2.8,Ghost Defender,201,Ghost,73.472,20.0
-1,1,29,2.8,Real Defender,201,Mock Defender,77.6447,20.8891
-1,1,30,2.9,Carrier,101,Mock Carrier,79.4799,21.9799
-1,1,30,2.9,Ghost Defender,201,Ghost,73.472,20.0
-1,1,30,2.9,Real Defender,201,Mock Defender,78.3324,21.2978
-1,1,31,3.0,Carrier,101,Mock Carrier,79.9749,22.4749
-1,1,31,3.0,Ghost Defender,201,Ghost,73.472,20.0
-1,1,31,3.0,Real Defender,201,Mock Defender,78.9826,21.7638
-1,1,32,3.1,Carrier,101,Mock Carrier,80.4698,22.9698
-1,1,32,3.1,Ghost Defender,201,Ghost,73.472,20.0
-1,1,32,3.1,Real Defender,201,Mock Defender,79.604,22.2677
-1,1,33,3.2,Carrier,101,Mock Carrier,80.9648,23.4648
-1,1,33,3.2,Ghost Defender,201,Ghost,73.472,20.0
-1,1,33,3.2,Real Defender,201,Mock Defender,80.2047,22.7961
-1,1,34,3.3,Carrier,101,Mock Carrier,81.4598,23.9598
-1,1,34,3.3,Ghost Defender,201,Ghost,73.472,20.0
-1,1,34,3.3,Real Defender,201,Mock Defender,80.7913,23.34
-1,1,35,3.4,Carrier,101,Mock Carrier,81.9548,24.4548
-1,1,35,3.4,Ghost Defender,201,Ghost,73.472,20.0
-1,1,35,3.4,Real Defender,201,Mock Defender,81.2863,23.835
-1,1,36,3.5,Carrier,101,Mock Carrier,82.4497,24.9497
-1,1,36,3.5,Ghost Defender,201,Ghost,73.472,20.0
-1,1,36,3.5,Real Defender,201,Mock Defender,81.7813,24.33
-1,1,37,3.6,Carrier,101,Mock Carrier,82.9447,25.4447
-1,1,37,3.6,Ghost Defender,201,Ghost,73.472,20.0
-1,1,37,3.6,Real Defender,201,Mock Defender,82.2762,24.8249
-1,1,38,3.7,Carrier,101,Mock Carrier,83.4397,25.9397
-1,1,38,3.7,Ghost Defender,201,Ghost,73.472,20.0
-1,1,38,3.7,Real Defender,201,Mock Defender,82.7712,25.3199
-1,1,39,3.8,Carrier,101,Mock Carrier,83.9347,26.4347
-1,1,39,3.8,Ghost Defender,201,Ghost,73.472,20.0
-1,1,39,3.8,Real Defender,201,Mock Defender,83.2662,25.8149
-1,1,40,3.9,Carrier,101,Mock Carrier,84.4296,26.9296
-1,1,40,3.9,Ghost Defender,201,Ghost,73.472,20.0
-1,1,40,3.9,Real Defender,201,Mock Defender,83.7612,26.3099
-1,2,1,0.0,Carrier,101,Mock Carrier,60.0,20.0
-1,2,1,0.0,Ghost Defender,201,Ghost,70.0,35.0
-1,2,1,0.0,Real Defender,201,Mock Defender,70.0,35.0
-1,2,2,0.1,Carrier,101,Mock Carrier,60.7,20.0
-1,2,2,0.1,Ghost Defender,201,Ghost,70.1804,34.2206
-1,2,2,0.1,Real Defender,201,Mock Defender,70.1804,34.2206
-1,2,3,0.2,Carrier,101,Mock Carrier,61.4,20.0
-1,2,3,0.2,Ghost Defender,201,Ghost,70.3608,33.4412
-1,2,3,0.2,Real Defender,201,Mock Defender,70.3608,33.4412
-1,2,4,0.3,Carrier,101,Mock Carrier,62.1,20.0
-1,2,4,0.3,Ghost Defender,201,Ghost,70.5412,32.6618
-1,2,4,0.3,Real Defender,201,Mock Defender,70.5412,32.6618
-1,2,5,0.4,Carrier,101,Mock Carrier,62.8,20.0
-1,2,5,0.4,Ghost Defender,201,Ghost,70.7216,31.8824
-1,2,5,0.4,Real Defender,201,Mock Defender,70.7216,31.8824
-1,2,6,0.5,Carrier,101,Mock Carrier,63.5,20.0
-1,2,6,0.5,Ghost Defender,201,Ghost,70.902,31.103
-1,2,6,0.5,Real Defender,201,Mock Defender,70.902,31.103
-1,2,7,0.6,Carrier,101,Mock Carrier,64.2,20.0
-1,2,7,0.6,Ghost Defender,201,Ghost,71.0824,30.3236
-1,2,7,0.6,Real Defender,201,Mock Defender,71.0824,30.3236
-1,2,8,0.7,Carrier,101,Mock Carrier,64.9,20.0
-1,2,8,0.7,Ghost Defender,201,Ghost,71.2628,29.5442
-1,2,8,0.7,Real Defender,201,Mock Defender,71.2628,29.5442
-1,2,9,0.8,Carrier,101,Mock Carrier,65.6,20.0
-1,2,9,0.8,Ghost Defender,201,Ghost,71.4432,28.7649
-1,2,9,0.8,Real Defender,201,Mock Defender,71.4432,28.7649
-1,2,10,0.9,Carrier,101,Mock Carrier,66.3,20.0
-1,2,10,0.9,Ghost Defender,201,Ghost,71.6236,27.9855
-1,2,10,0.9,Real Defender,201,Mock Defender,71.6236,27.9855
-1,2,11,1.0,Carrier,101,Mock Carrier,67.0,20.0
-1,2,11,1.0,Ghost Defender,201,Ghost,71.804,27.2061
-1,2,11,1.0,Real Defender,201,Mock Defender,71.804,27.2061
-1,2,12,1.1,Carrier,101,Mock Carrier,67.7,20.0
-1,2,12,1.1,Ghost Defender,201,Ghost,71.9844,26.4267
-1,2,12,1.1,Real Defender,201,Mock Defender,71.9844,26.4267
-1,2,13,1.2,Carrier,101,Mock Carrier,68.4,20.0
-1,2,13,1.2,Ghost Defender,201,Ghost,72.1649,25.6473
-1,2,13,1.2,Real Defender,201,Mock Defender,72.1649,25.6473
-1,2,14,1.3,Carrier,101,Mock Carrier,69.1,20.0
-1,2,14,1.3,Ghost Defender,201,Ghost,72.3453,24.8679
-1,2,14,1.3,Real Defender,201,Mock Defender,72.3453,24.8679
-1,2,15,1.4,Carrier,101,Mock Carrier,69.8,20.0
-1,2,15,1.4,Ghost Defender,201,Ghost,72.5257,24.0885
-1,2,15,1.4,Real Defender,201,Mock Defender,72.5257,24.0885
-1,2,16,1.5,Carrier,101,Mock Carrier,70.5,20.0
-1,2,16,1.5,Ghost Defender,201,Ghost,72.7061,23.3091
-1,2,16,1.5,Real Defender,201,Mock Defender,72.7061,23.3091
-1,2,17,1.6,Carrier,101,Mock Carrier,71.2,20.0
-1,2,17,1.6,Ghost Defender,201,Ghost,72.8865,22.5297
-1,2,17,1.6,Real Defender,201,Mock Defender,72.8865,22.5297
-1,2,18,1.7,Carrier,101,Mock Carrier,71.9,20.0
-1,2,18,1.7,Ghost Defender,201,Ghost,73.0669,21.7503
-1,2,18,1.7,Real Defender,201,Mock Defender,73.0669,21.7503
-1,2,19,1.8,Carrier,101,Mock Carrier,72.6,20.0
-1,2,19,1.8,Ghost Defender,201,Ghost,73.2473,20.9709
-1,2,19,1.8,Real Defender,201,Mock Defender,73.2473,20.9709
-1,2,20,1.9,Carrier,101,Mock Carrier,73.3,20.0
-1,2,20,1.9,Ghost Defender,201,Ghost,73.4277,20.1915
-1,2,20,1.9,Real Defender,201,Mock Defender,73.4277,20.1915
-1,2,21,2.0,Carrier,101,Mock Carrier,74.0,20.0
-1,2,21,2.0,Ghost Defender,201,Ghost,73.472,20.0
-1,2,21,2.0,Real Defender,201,Mock Defender,74.1277,20.1915
-1,2,22,2.1,Carrier,101,Mock Carrier,74.7,20.0
-1,2,22,2.1,Ghost Defender,201,Ghost,73.472,20.0
-1,2,22,2.1,Real Defender,201,Mock Defender,74.8277,20.1915
-1,2,23,2.2,Carrier,101,Mock Carrier,75.4,20.0
-1,2,23,2.2,Ghost Defender,201,Ghost,73.472,20.0
-1,2,23,2.2,Real Defender,201,Mock Defender,75.5277,20.1915
-1,2,24,2.3,Carrier,101,Mock Carrier,76.1,20.0
-1,2,24,2.3,Ghost Defender,201,Ghost,73.472,20.0
-1,2,24,2.3,Real Defender,201,Mock Defender,76.2277,20.1915
-1,2,25,2.4,Carrier,101,Mock Carrier,76.8,20.0
-1,2,25,2.4,Ghost Defender,201,Ghost,73.472,20.0
-1,2,25,2.4,Real Defender,201,Mock Defender,76.9277,20.1915
-1,2,26,2.5,Carrier,101,Mock Carrier,77.5,20.0
-1,2,26,2.5,Ghost Defender,201,Ghost,73.472,20.0
-1,2,26,2.5,Real Defender,201,Mock Defender,77.6277,20.1915
-1,2,27,2.6,Carrier,101,Mock Carrier,77.995,20.495
-1,2,27,2.6,Ghost Defender,201,Ghost,73.472,20.0
-1,2,27,2.6,Real Defender,201,Mock Defender,78.1227,20.6865
-1,2,28,2.7,Carrier,101,Mock Carrier,78.4899,20.9899
-1,2,28,2.7,Ghost Defender,201,Ghost,73.472,20.0
-1,2,28,2.7,Real Defender,201,Mock Defender,78.6176,21.1815
-1,2,29,2.8,Carrier,101,Mock Carrier,78.9849,21.4849
-1,2,29,2.8,Ghost Defender,201,Ghost,73.472,20.0
-1,2,29,2.8,Real Defender,201,Mock Defender,79.1126,21.6764
-1,2,30,2.9,Carrier,101,Mock Carrier,79.4799,21.9799
-1,2,30,2.9,Ghost Defender,201,Ghost,73.472,20.0
-1,2,30,2.9,Real Defender,201,Mock Defender,79.6076,22.1714
-1,2,31,3.0,Carrier,101,Mock Carrier,79.9749,22.4749
-1,2,31,3.0,Ghost Defender,201,Ghost,73.472,20.0
-1,2,31,3.0,Real Defender,201,Mock Defender,80.1026,22.6664
-1,2,32,3.1,Carrier,101,Mock Carrier,80.4698,22.9698
-1,2,32,3.1,Ghost Defender,201,Ghost,73.472,20.0
-1,2,32,3.1,Real Defender,201,Mock Defender,80.5975,23.1614
-1,2,33,3.2,Carrier,101,Mock Carrier,80.9648,23.4648
-1,2,33,3.2,Ghost Defender,201,Ghost,73.472,20.0
-1,2,33,3.2,Real Defender,201,Mock Defender,81.0925,23.6563
-1,2,34,3.3,Carrier,101,Mock Carrier,81.4598,23.9598
-1,2,34,3.3,Ghost Defender,201,Ghost,73.472,20.0
-1,2,34,3.3,Real Defender,201,Mock Defender,81.5875,24.1513
-1,2,35,3.4,Carrier,101,Mock Carrier,81.9548,24.4548
-1,2,35,3.4,Ghost Defender,201,Ghost,73.472,20.0
-1,2,35,3.4,Real Defender,201,Mock Defender,82.0825,24.6463
-1,2,36,3.5,Carrier,101,Mock Carrier,82.4497,24.9497
-1,2,36,3.5,Ghost Defender,201,Ghost,73.472,20.0
-1,2,36,3.5,Real Defender,201,Mock Defender,82.5774,25.1413
-1,2,37,3.6,Carrier,101,Mock Carrier,82.9447,25.4447
-1,2,37,3.6,Ghost Defender,201,Ghost,73.472,20.0
-1,2,37,3.6,Real Defender,201,Mock Defender,83.0724,25.6362
-1,2,38,3.7,Carrier,101,Mock Carrier,83.4397,25.9397
-1,2,38,3.7,Ghost Defender,201,Ghost,73.472,20.0
-1,2,38,3.7,Real Defender,201,Mock Defender,83.5674,26.1312
-1,2,39,3.8,Carrier,101,Mock Carrier,83.9347,26.4347
-1,2,39,3.8,Ghost Defender,201,Ghost,73.472,20.0
-1,2,39,3.8,Real Defender,201,Mock Defender,84.0624,26.6262
-1,2,40,3.9,Carrier,101,Mock Carrier,84.4296,26.9296
-1,2,40,3.9,Ghost Defender,201,Ghost,73.472,20.0
-1,2,40,3.9,Real Defender,201,Mock Defender,84.5573,27.1212
-2,1,1,0.0,Carrier,101,Mock Carrier,50.0,10.0
-2,1,1,0.0,Ghost Defender,201,Ghost,40.0,40.0
-2,1,1,0.0,Real Defender,201,Mock Defender,40.0,40.0
-2,1,2,0.1,Carrier,101,Mock Carrier,50.95,10.0
-2,1,2,0.1,Ghost Defender,201,Ghost,40.0,40.0
-2,1,2,0.1,Real Defender,201,Mock Defender,40.2057,39.4364
-2,1,3,0.2,Carrier,101,Mock Carrier,51.9,10.0
-2,1,3,0.2,Ghost Defender,201,Ghost,40.0,40.0
-2,1,3,0.2,Real Defender,201,Mock Defender,40.4272,38.8788
-2,1,4,0.3,Carrier,101,Mock Carrier,52.85,10.0
-2,1,4,0.3,Ghost Defender,201,Ghost,40.0,40.0
-2,1,4,0.3,Real Defender,201,Mock Defender,40.6643,38.3276
-2,1,5,0.4,Carrier,101,Mock Carrier,53.8,10.0
-2,1,5,0.4,Ghost Defender,201,Ghost,40.0,40.0
-2,1,5,0.4,Real Defender,201,Mock Defender,40.9167,37.7833
-2,1,6,0.5,Carrier,101,Mock Carrier,54.75,10.0
-2,1,6,0.5,Ghost Defender,201,Ghost,40.0,40.0
-2,1,6,0.5,Real Defender,201,Mock Defender,41.1842,37.2462
-2,1,7,0.6,Carrier,101,Mock Carrier,55.7,10.0
-2,1,7,0.6,Ghost Defender,201,Ghost,40.0,40.0
-2,1,7,0.6,Real Defender,201,Mock Defender,41.4663,36.7166
-2,1,8,0.7,Carrier,101,Mock Carrier,56.65,10.0
-2,1,8,0.7,Ghost Defender,201,Ghost,40.0,40.0
-2,1,8,0.7,Real Defender,201,Mock Defender,41.7628,36.195
-2,1,9,0.8,Carrier,101,Mock Carrier,57.6,10.0
-2,1,9,0.8,Ghost Defender,201,Ghost,40.0,40.0
-2,1,9,0.8,Real Defender,201,Mock Defender,42.0732,35.6815
-2,1,10,0.9,Carrier,101,Mock Carrier,58.55,10.0
-2,1,10,0.9,Ghost Defender,201,Ghost,40.0,40.0
-2,1,10,0.9,Real Defender,201,Mock Defender,42.3972,35.1765
-2,1,11,1.0,Carrier,101,Mock Carrier,59.5,10.0
-2,1,11,1.0,Ghost Defender,201,Ghost,40.0,40.0
-2,1,11,1.0,Real Defender,201,Mock Defender,42.7343,34.6802
-2,1,12,1.1,Carrier,101,Mock Carrier,60.45,10.0
-2,1,12,1.1,Ghost Defender,201,Ghost,40.0,40.0
-2,1,12,1.1,Real Defender,201,Mock Defender,43.0842,34.1928
-2,1,13,1.2,Carrier,101,Mock Carrier,61.4,10.0
-2,1,13,1.2,Ghost Defender,201,Ghost,40.0,40.0
-2,1,13,1.2,Real Defender,201,Mock Defender,43.4464,33.7144
-2,1,14,1.3,Carrier,101,Mock Carrier,62.35,10.0
-2,1,14,1.3,Ghost Defender,201,Ghost,40.0,40.0
-2,1,14,1.3,Real Defender,201,Mock Defender,43.8204,33.2452
-2,1,15,1.4,Carrier,101,Mock Carrier,63.3,10.0
-2,1,15,1.4,Ghost Defender,201,Ghost,40.0,40.0
-2,1,15,1.4,Real Defender,201,Mock Defender,44.2058,32.7854
-2,1,16,1.5,Carrier,101,Mock Carrier,64.25,10.0
-2,1,16,1.5,Ghost Defender,201,Ghost,40.0,40.0
-2,1,16,1.5,Real Defender,201,Mock Defender,44.6021,32.3349
-2,1,17,1.6,Carrier,101,Mock Carrier,65.2,10.0
-2,1,17,1.6,Ghost Defender,201,Ghost,40.0,40.0
-2,1,17,1.6,Real Defender,201,Mock Defender,45.0088,31.8938
-2,1,18,1.7,Carrier,101,Mock Carrier,66.15,10.0
-2,1,18,1.7,Ghost Defender,201,Ghost,40.0,40.0
-2,1,18,1.7,Real Defender,201,Mock Defender,45.4256,31.4622
-2,1,19,1.8,Carrier,101,Mock Carrier,67.1,10.0
-2,1,19,1.8,Ghost Defender,201,Ghost,40.0,40.0
-2,1,19,1.8,Real Defender,201,Mock Defender,45.8519,31.04
-2,1,20,1.9,Carrier,101,Mock Carrier,68.05,10.0
-2,1,20,1.9,Ghost Defender,201,Ghost,40.0,40.0
-2,1,20,1.9,Real Defender,201,Mock Defender,46.2874,30.6273
-2,1,21,2.0,Carrier,101,Mock Carrier,69.0,10.0
-2,1,21,2.0,Ghost Defender,201,Ghost,40.0,40.0
-2,1,21,2.0,Real Defender,201,Mock Defender,46.7316,30.2239
-2,1,22,2.1,Carrier,101,Mock Carrier,69.95,10.0
-2,1,22,2.1,Ghost Defender,201,Ghost,40.0,40.0
-2,1,22,2.1,Real Defender,201,Mock Defender,47.184,29.8298
-2,1,23,2.2,Carrier,101,Mock Carrier,70.9,10.0
-2,1,23,2.2,Ghost Defender,201,Ghost,40.0,40.0
-2,1,23,2.2,Real Defender,201,Mock Defender,47.6443,29.4449
-2,1,24,2.3,Carrier,101,Mock Carrier,71.85,10.0
-2,1,24,2.3,Ghost Defender,201,Ghost,40.0,40.0
-2,1,24,2.3,Real Defender,201,Mock Defender,48.1121,29.0692
-2,1,25,2.4,Carrier,101,Mock Carrier,72.8,10.0
-2,1,25,2.4,Ghost Defender,201,Ghost,40.0,40.0
-2,1,25,2.4,Real Defender,201,Mock Defender,48.5869,28.7024
-2,1,26,2.5,Carrier,101,Mock Carrier,73.75,10.0
-2,1,26,2.5,Ghost Defender,201,Ghost,40.0,40.0
-2,1,26,2.5,Real Defender,201,Mock Defender,49.0685,28.3445
-2,1,27,2.6,Carrier,101,Mock Carrier,74.7,10.0
-2,1,27,2.6,Ghost Defender,201,Ghost,40.0,40.0
-2,1,27,2.6,Real Defender,201,Mock Defender,49.5564,27.9953
-2,1,28,2.7,Carrier,101,Mock Carrier,75.65,10.0
-2,1,28,2.7,Ghost Defender,201,Ghost,40.0,40.0
-2,1,28,2.7,Real Defender,201,Mock Defender,50.0503,27.6546
-2,1,29,2.8,Carrier,101,Mock Carrier,76.6,10.0
-2,1,29,2.8,Ghost Defender,201,Ghost,40.0,40.0
-2,1,29,2.8,Real Defender,201,Mock Defender,50.5499,27.3224
-2,1,30,2.9,Carrier,101,Mock Carrier,77.55,10.0
-2,1,30,2.9,Ghost Defender,201,Ghost,40.0,40.0
-2,1,30,2.9,Real Defender,201,Mock Defender,51.0549,26.9984
+1,1,1,0.0,Football,,football,40.0,26.0
+1,1,1,0.0,Ghost Defender,201,Ghost,58.4,21.0
+1,1,1,0.0,Real Defender,201,Mock Defender,58.4,21.0
+1,1,1,0.0,Receiver,101,Mock Receiver,50.0,12.0
+1,1,2,0.1,Football,,football,41.2,25.3
+1,1,2,0.1,Ghost Defender,201,Ghost,58.8226,20.3208
+1,1,2,0.1,Real Defender,201,Mock Defender,57.6,21.0
+1,1,2,0.1,Receiver,101,Mock Receiver,50.7,12.0
+1,1,3,0.2,Football,,football,42.4,24.6
+1,1,3,0.2,Ghost Defender,201,Ghost,59.2453,19.6415
+1,1,3,0.2,Real Defender,201,Mock Defender,56.8,21.0
+1,1,3,0.2,Receiver,101,Mock Receiver,51.4,12.0
+1,1,4,0.3,Football,,football,43.6,23.9
+1,1,4,0.3,Ghost Defender,201,Ghost,59.6679,18.9623
+1,1,4,0.3,Real Defender,201,Mock Defender,56.0,21.0
+1,1,4,0.3,Receiver,101,Mock Receiver,52.1,12.0
+1,1,5,0.4,Football,,football,44.8,23.2
+1,1,5,0.4,Ghost Defender,201,Ghost,60.0906,18.283
+1,1,5,0.4,Real Defender,201,Mock Defender,55.2,21.0
+1,1,5,0.4,Receiver,101,Mock Receiver,52.8,12.0
+1,1,6,0.5,Football,,football,46.0,22.5
+1,1,6,0.5,Ghost Defender,201,Ghost,60.5132,17.6038
+1,1,6,0.5,Real Defender,201,Mock Defender,54.4,21.0
+1,1,6,0.5,Receiver,101,Mock Receiver,53.5,12.0
+1,1,7,0.6,Football,,football,47.2,21.8
+1,1,7,0.6,Ghost Defender,201,Ghost,60.9358,16.9245
+1,1,7,0.6,Real Defender,201,Mock Defender,53.6,21.0
+1,1,7,0.6,Receiver,101,Mock Receiver,54.2,12.0
+1,1,8,0.7,Football,,football,48.4,21.1
+1,1,8,0.7,Ghost Defender,201,Ghost,61.3585,16.2453
+1,1,8,0.7,Real Defender,201,Mock Defender,52.8,21.0
+1,1,8,0.7,Receiver,101,Mock Receiver,54.9,12.0
+1,1,9,0.8,Football,,football,49.6,20.4
+1,1,9,0.8,Ghost Defender,201,Ghost,61.7811,15.566
+1,1,9,0.8,Real Defender,201,Mock Defender,52.0,21.0
+1,1,9,0.8,Receiver,101,Mock Receiver,55.6,12.0
+1,1,10,0.9,Football,,football,50.8,19.7
+1,1,10,0.9,Ghost Defender,201,Ghost,62.2038,14.8868
+1,1,10,0.9,Real Defender,201,Mock Defender,52.64,20.52
+1,1,10,0.9,Receiver,101,Mock Receiver,56.3,12.0
+1,1,11,1.0,Football,,football,52.0,19.0
+1,1,11,1.0,Ghost Defender,201,Ghost,62.6264,14.2075
+1,1,11,1.0,Real Defender,201,Mock Defender,53.28,20.04
+1,1,11,1.0,Receiver,101,Mock Receiver,57.0,12.0
+1,1,12,1.1,Football,,football,53.2,18.3
+1,1,12,1.1,Ghost Defender,201,Ghost,63.0491,13.5283
+1,1,12,1.1,Real Defender,201,Mock Defender,53.92,19.56
+1,1,12,1.1,Receiver,101,Mock Receiver,57.7,12.0
+1,1,13,1.2,Football,,football,54.4,17.6
+1,1,13,1.2,Ghost Defender,201,Ghost,63.4717,12.8491
+1,1,13,1.2,Real Defender,201,Mock Defender,54.56,19.08
+1,1,13,1.2,Receiver,101,Mock Receiver,58.4,12.0
+1,1,14,1.3,Football,,football,55.6,16.9
+1,1,14,1.3,Ghost Defender,201,Ghost,63.8943,12.1698
+1,1,14,1.3,Real Defender,201,Mock Defender,55.2,18.6
+1,1,14,1.3,Receiver,101,Mock Receiver,59.1,12.0
+1,1,15,1.4,Football,,football,56.8,16.2
+1,1,15,1.4,Ghost Defender,201,Ghost,64.0,12.0
+1,1,15,1.4,Real Defender,201,Mock Defender,55.84,18.12
+1,1,15,1.4,Receiver,101,Mock Receiver,59.8,12.0
+1,1,16,1.5,Football,,football,58.0,15.5
+1,1,16,1.5,Ghost Defender,201,Ghost,64.0,12.0
+1,1,16,1.5,Real Defender,201,Mock Defender,56.48,17.64
+1,1,16,1.5,Receiver,101,Mock Receiver,60.5,12.0
+1,1,17,1.6,Football,,football,59.2,14.8
+1,1,17,1.6,Ghost Defender,201,Ghost,64.0,12.0
+1,1,17,1.6,Real Defender,201,Mock Defender,57.12,17.16
+1,1,17,1.6,Receiver,101,Mock Receiver,61.2,12.0
+1,1,18,1.7,Football,,football,60.4,14.1
+1,1,18,1.7,Ghost Defender,201,Ghost,64.0,12.0
+1,1,18,1.7,Real Defender,201,Mock Defender,57.76,16.68
+1,1,18,1.7,Receiver,101,Mock Receiver,61.9,12.0
+1,1,19,1.8,Football,,football,61.6,13.4
+1,1,19,1.8,Ghost Defender,201,Ghost,64.0,12.0
+1,1,19,1.8,Real Defender,201,Mock Defender,58.4,16.2
+1,1,19,1.8,Receiver,101,Mock Receiver,62.6,12.0
+1,1,20,1.9,Football,,football,62.8,12.7
+1,1,20,1.9,Ghost Defender,201,Ghost,64.0,12.0
+1,1,20,1.9,Real Defender,201,Mock Defender,59.04,15.72
+1,1,20,1.9,Receiver,101,Mock Receiver,63.3,12.0
+1,1,21,2.0,Football,,football,64.0,12.0
+1,1,21,2.0,Ghost Defender,201,Ghost,64.0,12.0
+1,1,21,2.0,Real Defender,201,Mock Defender,59.68,15.24
+1,1,21,2.0,Receiver,101,Mock Receiver,64.0,12.0
+1,2,1,0.0,Football,,football,40.0,26.0
+1,2,1,0.0,Ghost Defender,201,Ghost,58.4,21.0
+1,2,1,0.0,Real Defender,201,Mock Defender,58.4,21.0
+1,2,1,0.0,Receiver,101,Mock Receiver,50.0,12.0
+1,2,2,0.1,Football,,football,41.2,25.3
+1,2,2,0.1,Ghost Defender,201,Ghost,58.8226,20.3208
+1,2,2,0.1,Real Defender,201,Mock Defender,58.8226,20.3208
+1,2,2,0.1,Receiver,101,Mock Receiver,50.7,12.0
+1,2,3,0.2,Football,,football,42.4,24.6
+1,2,3,0.2,Ghost Defender,201,Ghost,59.2453,19.6415
+1,2,3,0.2,Real Defender,201,Mock Defender,59.2453,19.6415
+1,2,3,0.2,Receiver,101,Mock Receiver,51.4,12.0
+1,2,4,0.3,Football,,football,43.6,23.9
+1,2,4,0.3,Ghost Defender,201,Ghost,59.6679,18.9623
+1,2,4,0.3,Real Defender,201,Mock Defender,59.6679,18.9623
+1,2,4,0.3,Receiver,101,Mock Receiver,52.1,12.0
+1,2,5,0.4,Football,,football,44.8,23.2
+1,2,5,0.4,Ghost Defender,201,Ghost,60.0906,18.283
+1,2,5,0.4,Real Defender,201,Mock Defender,60.0906,18.283
+1,2,5,0.4,Receiver,101,Mock Receiver,52.8,12.0
+1,2,6,0.5,Football,,football,46.0,22.5
+1,2,6,0.5,Ghost Defender,201,Ghost,60.5132,17.6038
+1,2,6,0.5,Real Defender,201,Mock Defender,60.5132,17.6038
+1,2,6,0.5,Receiver,101,Mock Receiver,53.5,12.0
+1,2,7,0.6,Football,,football,47.2,21.8
+1,2,7,0.6,Ghost Defender,201,Ghost,60.9358,16.9245
+1,2,7,0.6,Real Defender,201,Mock Defender,60.9358,16.9245
+1,2,7,0.6,Receiver,101,Mock Receiver,54.2,12.0
+1,2,8,0.7,Football,,football,48.4,21.1
+1,2,8,0.7,Ghost Defender,201,Ghost,61.3585,16.2453
+1,2,8,0.7,Real Defender,201,Mock Defender,61.3585,16.2453
+1,2,8,0.7,Receiver,101,Mock Receiver,54.9,12.0
+1,2,9,0.8,Football,,football,49.6,20.4
+1,2,9,0.8,Ghost Defender,201,Ghost,61.7811,15.566
+1,2,9,0.8,Real Defender,201,Mock Defender,61.7811,15.566
+1,2,9,0.8,Receiver,101,Mock Receiver,55.6,12.0
+1,2,10,0.9,Football,,football,50.8,19.7
+1,2,10,0.9,Ghost Defender,201,Ghost,62.2038,14.8868
+1,2,10,0.9,Real Defender,201,Mock Defender,62.2038,14.8868
+1,2,10,0.9,Receiver,101,Mock Receiver,56.3,12.0
+1,2,11,1.0,Football,,football,52.0,19.0
+1,2,11,1.0,Ghost Defender,201,Ghost,62.6264,14.2075
+1,2,11,1.0,Real Defender,201,Mock Defender,62.6264,14.2075
+1,2,11,1.0,Receiver,101,Mock Receiver,57.0,12.0
+1,2,12,1.1,Football,,football,53.2,18.3
+1,2,12,1.1,Ghost Defender,201,Ghost,63.0491,13.5283
+1,2,12,1.1,Real Defender,201,Mock Defender,63.0491,13.5283
+1,2,12,1.1,Receiver,101,Mock Receiver,57.7,12.0
+1,2,13,1.2,Football,,football,54.4,17.6
+1,2,13,1.2,Ghost Defender,201,Ghost,63.4717,12.8491
+1,2,13,1.2,Real Defender,201,Mock Defender,63.4717,12.8491
+1,2,13,1.2,Receiver,101,Mock Receiver,58.4,12.0
+1,2,14,1.3,Football,,football,55.6,16.9
+1,2,14,1.3,Ghost Defender,201,Ghost,63.8943,12.1698
+1,2,14,1.3,Real Defender,201,Mock Defender,63.8943,12.1698
+1,2,14,1.3,Receiver,101,Mock Receiver,59.1,12.0
+1,2,15,1.4,Football,,football,56.8,16.2
+1,2,15,1.4,Ghost Defender,201,Ghost,64.0,12.0
+1,2,15,1.4,Real Defender,201,Mock Defender,64.0,12.0
+1,2,15,1.4,Receiver,101,Mock Receiver,59.8,12.0
+1,2,16,1.5,Football,,football,58.0,15.5
+1,2,16,1.5,Ghost Defender,201,Ghost,64.0,12.0
+1,2,16,1.5,Real Defender,201,Mock Defender,64.0,12.0
+1,2,16,1.5,Receiver,101,Mock Receiver,60.5,12.0
+1,2,17,1.6,Football,,football,59.2,14.8
+1,2,17,1.6,Ghost Defender,201,Ghost,64.0,12.0
+1,2,17,1.6,Real Defender,201,Mock Defender,64.0,12.0
+1,2,17,1.6,Receiver,101,Mock Receiver,61.2,12.0
+1,2,18,1.7,Football,,football,60.4,14.1
+1,2,18,1.7,Ghost Defender,201,Ghost,64.0,12.0
+1,2,18,1.7,Real Defender,201,Mock Defender,64.0,12.0
+1,2,18,1.7,Receiver,101,Mock Receiver,61.9,12.0
+1,2,19,1.8,Football,,football,61.6,13.4
+1,2,19,1.8,Ghost Defender,201,Ghost,64.0,12.0
+1,2,19,1.8,Real Defender,201,Mock Defender,64.0,12.0
+1,2,19,1.8,Receiver,101,Mock Receiver,62.6,12.0
+1,2,20,1.9,Football,,football,62.8,12.7
+1,2,20,1.9,Ghost Defender,201,Ghost,64.0,12.0
+1,2,20,1.9,Real Defender,201,Mock Defender,64.0,12.0
+1,2,20,1.9,Receiver,101,Mock Receiver,63.3,12.0
+1,2,21,2.0,Football,,football,64.0,12.0
+1,2,21,2.0,Ghost Defender,201,Ghost,64.0,12.0
+1,2,21,2.0,Real Defender,201,Mock Defender,64.0,12.0
+1,2,21,2.0,Receiver,101,Mock Receiver,64.0,12.0
+2,1,1,0.0,Football,,football,40.0,26.0
+2,1,1,0.0,Ghost Defender,201,Ghost,60.0,40.0
+2,1,1,0.0,Real Defender,201,Mock Defender,60.0,40.0
+2,1,1,0.0,Receiver,101,Mock Receiver,50.0,10.0
+2,1,2,0.1,Football,,football,41.3,25.36
+2,1,2,0.1,Ghost Defender,201,Ghost,60.2692,39.3538
+2,1,2,0.1,Real Defender,201,Mock Defender,60.2692,39.3538
+2,1,2,0.1,Receiver,101,Mock Receiver,50.9,10.0
+2,1,3,0.2,Football,,football,42.6,24.72
+2,1,3,0.2,Ghost Defender,201,Ghost,60.5385,38.7077
+2,1,3,0.2,Real Defender,201,Mock Defender,60.5385,38.7077
+2,1,3,0.2,Receiver,101,Mock Receiver,51.8,10.0
+2,1,4,0.3,Football,,football,43.9,24.08
+2,1,4,0.3,Ghost Defender,201,Ghost,60.8077,38.0615
+2,1,4,0.3,Real Defender,201,Mock Defender,60.8077,38.0615
+2,1,4,0.3,Receiver,101,Mock Receiver,52.7,10.0
+2,1,5,0.4,Football,,football,45.2,23.44
+2,1,5,0.4,Ghost Defender,201,Ghost,61.0769,37.4154
+2,1,5,0.4,Real Defender,201,Mock Defender,61.0769,37.4154
+2,1,5,0.4,Receiver,101,Mock Receiver,53.6,10.0
+2,1,6,0.5,Football,,football,46.5,22.8
+2,1,6,0.5,Ghost Defender,201,Ghost,61.3462,36.7692
+2,1,6,0.5,Real Defender,201,Mock Defender,61.3462,36.7692
+2,1,6,0.5,Receiver,101,Mock Receiver,54.5,10.0
+2,1,7,0.6,Football,,football,47.8,22.16
+2,1,7,0.6,Ghost Defender,201,Ghost,61.6154,36.1231
+2,1,7,0.6,Real Defender,201,Mock Defender,61.6154,36.1231
+2,1,7,0.6,Receiver,101,Mock Receiver,55.4,10.0
+2,1,8,0.7,Football,,football,49.1,21.52
+2,1,8,0.7,Ghost Defender,201,Ghost,61.8846,35.4769
+2,1,8,0.7,Real Defender,201,Mock Defender,61.8846,35.4769
+2,1,8,0.7,Receiver,101,Mock Receiver,56.3,10.0
+2,1,9,0.8,Football,,football,50.4,20.88
+2,1,9,0.8,Ghost Defender,201,Ghost,62.1538,34.8308
+2,1,9,0.8,Real Defender,201,Mock Defender,62.1538,34.8308
+2,1,9,0.8,Receiver,101,Mock Receiver,57.2,10.0
+2,1,10,0.9,Football,,football,51.7,20.24
+2,1,10,0.9,Ghost Defender,201,Ghost,62.4231,34.1846
+2,1,10,0.9,Real Defender,201,Mock Defender,62.4231,34.1846
+2,1,10,0.9,Receiver,101,Mock Receiver,58.1,10.0
+2,1,11,1.0,Football,,football,53.0,19.6
+2,1,11,1.0,Ghost Defender,201,Ghost,62.6923,33.5385
+2,1,11,1.0,Real Defender,201,Mock Defender,62.6923,33.5385
+2,1,11,1.0,Receiver,101,Mock Receiver,59.0,10.0
+2,1,12,1.1,Football,,football,54.3,18.96
+2,1,12,1.1,Ghost Defender,201,Ghost,62.9615,32.8923
+2,1,12,1.1,Real Defender,201,Mock Defender,62.9615,32.8923
+2,1,12,1.1,Receiver,101,Mock Receiver,59.9,10.0
+2,1,13,1.2,Football,,football,55.6,18.32
+2,1,13,1.2,Ghost Defender,201,Ghost,63.2308,32.2462
+2,1,13,1.2,Real Defender,201,Mock Defender,63.2308,32.2462
+2,1,13,1.2,Receiver,101,Mock Receiver,60.8,10.0
+2,1,14,1.3,Football,,football,56.9,17.68
+2,1,14,1.3,Ghost Defender,201,Ghost,63.5,31.6
+2,1,14,1.3,Real Defender,201,Mock Defender,63.5,31.6
+2,1,14,1.3,Receiver,101,Mock Receiver,61.7,10.0
+2,1,15,1.4,Football,,football,58.2,17.04
+2,1,15,1.4,Ghost Defender,201,Ghost,63.7692,30.9538
+2,1,15,1.4,Real Defender,201,Mock Defender,63.7692,30.9538
+2,1,15,1.4,Receiver,101,Mock Receiver,62.6,10.0
+2,1,16,1.5,Football,,football,59.5,16.4
+2,1,16,1.5,Ghost Defender,201,Ghost,64.0385,30.3077
+2,1,16,1.5,Real Defender,201,Mock Defender,64.0385,30.3077
+2,1,16,1.5,Receiver,101,Mock Receiver,63.5,10.0
+2,1,17,1.6,Football,,football,60.8,15.76
+2,1,17,1.6,Ghost Defender,201,Ghost,64.3077,29.6615
+2,1,17,1.6,Real Defender,201,Mock Defender,64.3077,29.6615
+2,1,17,1.6,Receiver,101,Mock Receiver,64.4,10.0
+2,1,18,1.7,Football,,football,62.1,15.12
+2,1,18,1.7,Ghost Defender,201,Ghost,64.5769,29.0154
+2,1,18,1.7,Real Defender,201,Mock Defender,64.5769,29.0154
+2,1,18,1.7,Receiver,101,Mock Receiver,65.3,10.0
+2,1,19,1.8,Football,,football,63.4,14.48
+2,1,19,1.8,Ghost Defender,201,Ghost,64.8462,28.3692
+2,1,19,1.8,Real Defender,201,Mock Defender,64.8462,28.3692
+2,1,19,1.8,Receiver,101,Mock Receiver,66.2,10.0
+2,1,20,1.9,Football,,football,64.7,13.84
+2,1,20,1.9,Ghost Defender,201,Ghost,65.1154,27.7231
+2,1,20,1.9,Real Defender,201,Mock Defender,65.1154,27.7231
+2,1,20,1.9,Receiver,101,Mock Receiver,67.1,10.0
+2,1,21,2.0,Football,,football,66.0,13.2
+2,1,21,2.0,Ghost Defender,201,Ghost,65.3846,27.0769
+2,1,21,2.0,Real Defender,201,Mock Defender,65.3846,27.0769
+2,1,21,2.0,Receiver,101,Mock Receiver,68.0,10.0
+2,1,22,2.1,Football,,football,67.3,12.56
+2,1,22,2.1,Ghost Defender,201,Ghost,65.6538,26.4308
+2,1,22,2.1,Real Defender,201,Mock Defender,65.6538,26.4308
+2,1,22,2.1,Receiver,101,Mock Receiver,68.9,10.0
+2,1,23,2.2,Football,,football,68.6,11.92
+2,1,23,2.2,Ghost Defender,201,Ghost,65.9231,25.7846
+2,1,23,2.2,Real Defender,201,Mock Defender,65.9231,25.7846
+2,1,23,2.2,Receiver,101,Mock Receiver,69.8,10.0
+2,1,24,2.3,Football,,football,69.9,11.28
+2,1,24,2.3,Ghost Defender,201,Ghost,66.1923,25.1385
+2,1,24,2.3,Real Defender,201,Mock Defender,66.1923,25.1385
+2,1,24,2.3,Receiver,101,Mock Receiver,70.7,10.0
+2,1,25,2.4,Football,,football,71.2,10.64
+2,1,25,2.4,Ghost Defender,201,Ghost,66.4615,24.4923
+2,1,25,2.4,Real Defender,201,Mock Defender,66.4615,24.4923
+2,1,25,2.4,Receiver,101,Mock Receiver,71.6,10.0
+2,1,26,2.5,Football,,football,72.5,10.0
+2,1,26,2.5,Ghost Defender,201,Ghost,66.7308,23.8462
+2,1,26,2.5,Real Defender,201,Mock Defender,66.7308,23.8462
+2,1,26,2.5,Receiver,101,Mock Receiver,72.5,10.0
