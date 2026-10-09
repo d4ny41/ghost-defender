@@ -1,10 +1,12 @@
-# Ghost Defender — Project Context
+# Ghost Defender — Project Context (v2)
 
 Read this file before every task. It is the single source of truth for both halves of the project.
 
+**Why v2:** the tracking data stops when the pass arrives, so there is no post-catch pursuit to measure. The project now measures pursuit **while the ball is in the air**, from the throw to the moment it arrives. Code written for v1 (post-catch, ball carrier, tackle) must be updated to match this file. `physics.py` still contains `solve_intercept` and `ghost_positions` from v1: keep them and their tests, but the pipeline no longer uses them.
+
 ## What we are building
 
-A Streamlit + Plotly tool for NFL coaches. For every completed pass, it takes the defender nearest the ball carrier at the moment of the catch, simulates a "Ghost Defender" that runs the mathematically optimal straight-line pursuit angle, animates the real defender against the ghost, and reports **Wasted Yards** = distance the real defender ran − distance the ghost needed.
+A Streamlit + Plotly tool for NFL coaches. On every pass, at the moment of the throw, it takes the defender nearest the targeted receiver and launches a "Ghost Defender" from the same spot. The ghost runs a straight line to the point where the ball arrives, at that defender's own top speed. The app animates the throw, the real defender and the ghost, and reports **Wasted Yards**: how much farther from the catch point the real defender was than the ghost when the ball arrived.
 
 ## Team and file ownership
 
@@ -43,88 +45,77 @@ app.py             Streamlit app
 - `s` is speed in yards per second. `dir` is the direction of motion in degrees, measured clockwise from the +y axis: 0 = +y, 90 = +x, 180 = −y, 270 = −x.
 - Velocity from `s` and `dir`: `vx = s · sin(radians(dir))`, `vy = s · cos(radians(dir))`.
 - Tracking runs at 10 frames per second, so consecutive frames are `DT = 0.1` s apart.
-- All scripts read raw data from `data/raw/` (`plays.csv`, `players.csv`, `tracking/tracking_<gameId>.csv`). No other raw-data location is used.
-- Constants, defined once at the top of `physics.py`: `DT = 0.1`, `CONTACT_RADIUS = 1.0` (yards), `LEAGUE_MAX_SPEED = 8.5` (yd/s).
+- Constants, defined once at the top of `physics.py`: `DT = 0.1`, `CONTACT_RADIUS = 1.0` (yards), `LEAGUE_MAX_SPEED = 8.5` (yd/s), `MAX_TARGET_DIST = 3.0` (yards).
 
-## Core maths
-
-### Intercept point
-
-Inputs at the catch frame: carrier position `C0`, carrier velocity `Vc` (from `s` and `dir`, assumed constant from then on), defender position `D0`, ghost speed `V`.
-
-```
-d = C0 − D0
-a = Vc·Vc − V²
-b = 2 (d·Vc)
-c = d·d
-Solve a·t² + b·t + c = 0 for the smallest t > 0.
-```
-
-Edge cases, checked in this order:
-1. `V <= 0` → no solution.
-2. `c` ≈ 0 (defender already on the carrier) → `t = 0`.
-3. `|a| < 1e-9` (equal speeds) → `t = −c / b` if `b < 0`, otherwise no solution.
-4. Otherwise `disc = b² − 4ac`. If `disc < 0` → no solution. Else take both roots and keep the smallest one greater than 0. If neither is positive → no solution.
-
-Intercept point `I = C0 + Vc · t`. Ghost distance = `V · t` (equal to `|I − D0|`).
-
-### Ghost path
-
-Let `τ` be seconds since the catch, `τ = (frameId − catch_frameId) · DT`.
-
-```
-ghost(τ) = D0 + (I − D0) · min(τ / t, 1)
-```
-
-After reaching `I` the ghost stays at `I`. If `t = 0`, the ghost is at `I` on every frame.
-
-### Ghost speed V
-
-`V` = the real defender's maximum `s` across the play window, with `speed_source = "play_max"`. If no intercept exists at that speed, retry with `LEAGUE_MAX_SPEED` and `speed_source = "league"`. If there is still no solution, `status = "no_intercept"`, the ghost stays at `D0` on every frame, and `ghost_speed` holds the last speed tried.
+## Core logic
 
 ### Play window
 
-- Start frame (called the "catch frame" throughout this file, and stored as `catch_frameId`): the first frame whose event is either `pass_arrived` or `pass_outcome_caught`, whichever appears first in the play.
-- End frame: the first frame at or after the start frame whose event is in `END_EVENTS = {"first_contact", "tackle", "out_of_bounds"}`. If none, the last frame of the play, with `end_event = "last_frame"`. Touchdown and fumble events are not used.
-- The window is every frame from the start frame to the end frame, inclusive. Skip plays whose window has fewer than 2 frames.
+- Throw frame: the first frame whose event is `pass_forward`.
+- Arrival frame: the first frame after the throw frame whose event is `pass_arrived`. If there is none, the first frame after the throw with an event starting `pass_outcome_`. If there is neither, skip the play.
+- The window is every frame from the throw frame to the arrival frame, inclusive. Frames after the arrival frame are never used.
+- `air_time = (arrival_frameId − throw_frameId) · DT`. Skip plays with `air_time` under 0.3 s.
 
-### Ball carrier
+### Actors
 
-`plays.csv` has no ball-carrier column, so the carrier is derived for every play. At the start frame (the exact first frame of the window), the carrier is the player on the `possessionTeam` with the minimum Euclidean distance (from `x`, `y`) to the football (`team == "football"`) in that same frame. The carrier is fixed for the whole window. The football is never a candidate.
+- Catch point `L` = the football's (x, y) at the arrival frame.
+- Targeted receiver: the offensive player, excluding the QB, whose (x, y) at the arrival frame is closest to `L`. Skip the play if that distance is over `MAX_TARGET_DIST` (a throwaway or a pass with no clear target).
+- Defender: the defensive player closest to the targeted receiver at the throw frame.
+- Names and positions come from `players.csv` (tracking has no displayName).
+
+### Ghost speed V
+
+`V` = the real defender's maximum `s` on the play, from the first tracked frame up to and including the arrival frame. Never use frames after the arrival frame.
+
+### Ghost path
+
+The ghost starts at the defender's throw-frame position `D0` and runs straight at `L` at speed `V`, then stops at `L`.
+
+```
+dist0 = |L − D0|
+u     = (L − D0) / dist0
+ghost(τ) = D0 + u · min(V · τ, dist0)        τ = seconds since the throw
+```
+
+If `dist0` ≈ 0, the ghost is at `L` on every frame.
+
+- `ghost_reached = (V · air_time >= dist0)`
+- `ghost_reach_time = dist0 / V` if `ghost_reached`, otherwise empty.
 
 ### Wasted Yards
 
-- Contact frame: the first window frame where the real defender is within `CONTACT_RADIUS` of the carrier. If that never happens, use the last window frame and set `reached_carrier = False`.
-- `real_dist`: sum of straight-line distances between consecutive real-defender positions from the catch frame to the contact frame, inclusive. Compute it from `x`, `y`, not from the `dis` column.
-- `ghost_dist = V · t`.
-- `wasted_yards = real_dist − ghost_dist`, rounded to 2 dp. Keep the sign.
-- Interpretation: values below 1.0 count as an effectively optimal angle, because contact is declared at 1 yard rather than 0.
+- `real_gap` = distance from the real defender to `L` at the arrival frame.
+- `ghost_gap = max(dist0 − V · air_time, 0)`, which is the ghost's distance to `L` at arrival.
+- `wasted_yards = real_gap − ghost_gap`, rounded to 2 dp.
+- `real_dist` = path length of the real defender from the throw frame to the arrival frame (from x, y, not the `dis` column). Informational only.
+- Interpretation: `wasted_yards` is non-negative in theory, because the ghost uses the defender's own top speed. Small negatives can appear from tracking noise. Treat anything under 0.5 as an optimal angle. If `ghost_reached` is False, the defender was out of range: even a perfect angle could not get there, so do not blame him for the gap.
 
 ### Worked examples (unit tests must reproduce these)
 
-1. Stationary carrier: `C0=(10,0)`, `Vc=(0,0)`, `D0=(0,0)`, `V=5` → `t=2.0`, `I=(10,0)`.
-2. Crossing route: `C0=(10,0)`, `Vc=(0,5)`, `D0=(0,0)`, `V=10` → `t=1.1547`, `I=(10, 5.7735)`.
-3. Faster carrier running away: `C0=(10,0)`, `Vc=(8,0)`, `D0=(0,0)`, `V=6` → no solution.
-4. Equal speeds, carrier running back towards the defender: `C0=(10,0)`, `Vc=(−5,0)`, `D0=(0,0)`, `V=5` → `t=1.0`, `I=(5,0)`.
-5. Velocity: `s=5, dir=90` → `(5, 0)`. `s=5, dir=180` → `(0, −5)`.
-6. Ghost path: `D0=(0,0)`, `I=(10,0)`, `t=2.0` → `τ=1.0` gives `(5,0)`; `τ=2.0` gives `(10,0)`; `τ=2.4` gives `(10,0)`.
-7. Path length of `(0,0) → (3,4) → (3,10)` = `11.0`.
+1. Velocity: `s=5, dir=90` → `(5, 0)`. `s=5, dir=180` → `(0, −5)`.
+2. Path length of `(0,0) → (3,4) → (3,10)` = `11.0`.
+3. Ghost to target: `D0=(0,0)`, `L=(10,0)`, `V=5`, `τ = 0, 1, 2, 3` → `(0,0)`, `(5,0)`, `(10,0)`, `(10,0)`.
+4. Arrival gap: `D0=(0,0)`, `L=(10,0)`, `air_time=2`: `V=4` → `2.0`. `V=6` → `0.0`.
+5. Reach time: `D0=(0,0)`, `L=(6,8)`, `V=5` → `2.0`.
+6. Defender already at the catch point: `D0 = L = (5,5)`, `V=7`, `τ = 0, 1` → both `(5,5)`; gap `0.0`; reach time `0.0`.
+7. Wasted Yards: `D0=(0,0)`, `L=(6,8)`, `V=5`, `air_time=2`, real defender at `(3,4)` on arrival → `ghost_gap = 0.0`, `real_gap = 5.0`, `wasted_yards = 5.0`.
 
 ### Golden play (shared by the mock data and the pipeline test)
 
-A 40-frame window. At the catch frame the carrier is at `(60.0, 20.0)` with `s = 7.0`, `dir = 90`, and the nearest defender is at `(70.0, 35.0)`.
+A throw with 2.0 s of air time: 20 steps after the throw, 21 frames in the window.
 
-On each of the 39 steps after the catch:
-- The carrier moves 0.7 yd: at `dir = 90` for steps 1–25, then at `dir = 45` for steps 26–39.
-- The defender runs pure pursuit (the classic bad angle): it moves `min(0.8, remaining distance)` yards straight towards the carrier's new position. Once it is within 1.0 yd of the carrier, it copies the carrier's displacement on every later step.
+- QB at `(40, 26)`. The football starts there at the throw and moves in a straight line to the catch point, arriving on the last step.
+- Receiver: starts at `(50, 12)`, runs `dir = 90` at 7.0 yd/s (0.7 yd per step) → catch point `L = (64, 12)`.
+- Defender: starts at `(58.4, 21.0)`, top speed 8.0 yd/s (0.8 yd per step).
+  - Steps 1–8: he bites the wrong way, running `dir = 270` → reaches `(52.0, 21.0)`.
+  - Steps 9–20: he runs straight at `L` → ends at `(59.68, 15.24)`.
+- Ghost speed 8.0.
 
-Ghost speed = 8.0 yd/s (the defender's top speed).
-
-Expected results (tolerance ±0.05):
-- `t_intercept = 1.925` s, intercept `(73.47, 20.00)`
-- contact on step 33 (the 34th frame of the window)
-- ghost reaches the intercept on step 20 (the 21st frame)
-- `real_dist = 26.40`, `ghost_dist = 15.40`, `wasted_yards = 11.00`
+Expected results (tolerance ±0.01 unless stated):
+- `dist0 = 10.60`, `ghost_reached = True`, `ghost_reach_time = 1.325` s
+- ghost at `τ = 1.0` is `(62.63, 14.21)`; at `τ ≥ 1.4` it is at `(64, 12)`
+- football at window step 10 (`τ = 1.0`) is `(52, 19)`
+- `ghost_gap = 0.00`, `real_gap = 5.40`, `wasted_yards = 5.40`, `real_dist = 16.00`
 
 These numbers were computed independently. If code disagrees with them, the code is wrong.
 
@@ -132,21 +123,21 @@ These numbers were computed independently. If code disagrees with them, the code
 
 Location: `data/processed/` for real data, `data/mock/` for mock data. Identical filenames and columns in both.
 
-### `ghost_frames.csv` — one row per player per frame
+### `ghost_frames.csv` — one row per element per frame
 
 | column | type | meaning |
 |---|---|---|
 | gameId | int | |
 | playId | int | |
 | frameId | int | original frameId from tracking |
-| t | float | seconds since the catch (0.0 on the catch frame) |
-| player_type | str | exactly `Carrier`, `Real Defender` or `Ghost Defender` |
-| nflId | int | for the ghost, the real defender's nflId |
-| displayName | str | for the ghost, `Ghost` |
+| t | float | seconds since the throw (0.0 on the throw frame) |
+| player_type | str | exactly `Receiver`, `Real Defender`, `Ghost Defender` or `Football` |
+| nflId | int | ghost: the real defender's nflId; football: empty |
+| displayName | str | ghost: `Ghost`; football: `football` |
 | x | float | yards |
 | y | float | yards |
 
-Exactly 3 rows per frame, for every frame in the window. Sorted by gameId, playId, frameId, player_type.
+Exactly 4 rows per frame, for every frame in the window. Sorted by gameId, playId, frameId, player_type.
 
 ### `play_summary.csv` — one row per play
 
@@ -155,44 +146,47 @@ Exactly 3 rows per frame, for every frame in the window. Sorted by gameId, playI
 | gameId | int | |
 | playId | int | |
 | description | str | `playDescription` from plays.csv, or empty |
-| carrier_nflId | int | |
-| carrier_name | str | |
+| pass_result | str | `passResult` from plays.csv (e.g. C, I, IN), or empty |
+| coverage | str | coverage column from plays.csv if one exists, or empty |
+| receiver_nflId | int | |
+| receiver_name | str | |
 | defender_nflId | int | |
 | defender_name | str | |
-| catch_frameId | int | first frame of the window |
-| end_frameId | int | last frame of the window |
-| end_event | str | event that closed the window, or `last_frame` |
+| defender_position | str | from players.csv |
+| throw_frameId | int | first frame of the window |
+| arrival_frameId | int | last frame of the window |
+| arrival_event | str | event that closed the window |
+| air_time | float | seconds |
 | ghost_speed | float | yd/s |
-| speed_source | str | `play_max` or `league` |
-| t_intercept | float | seconds; empty if no_intercept |
-| intercept_x | float | empty if no_intercept |
-| intercept_y | float | empty if no_intercept |
+| catch_x | float | L |
+| catch_y | float | L |
 | ghost_start_x | float | D0 |
 | ghost_start_y | float | D0 |
-| real_dist | float | yards, 2 dp; empty if no_intercept |
-| ghost_dist | float | yards, 2 dp; empty if no_intercept |
-| wasted_yards | float | yards, 2 dp; empty if no_intercept |
-| reached_carrier | bool | |
-| contact_frameId | int | empty if not reached |
-| status | str | `ok` or `no_intercept` |
+| ghost_reached | bool | |
+| ghost_reach_time | float | seconds; empty if not reached |
+| real_dist | float | yards, 2 dp |
+| real_gap | float | yards, 2 dp |
+| ghost_gap | float | yards, 2 dp |
+| wasted_yards | float | yards, 2 dp |
 
-Plays that cannot be processed at all are skipped and logged, never written.
+Plays that cannot be processed are skipped and logged, never written.
 
 ## Raw data schema notes
 
-Person 1 fills this in after inspecting the files. Until then, inspect the data rather than guessing.
+Person 1 fills this in and keeps it current.
 
-- Raw files are in `data/raw/`. Files: `games.csv`, `players.csv`, `plays.csv`, `pffScoutingData.csv`, and `tracking/tracking_<gameId>.csv` (122 files, one per game, 5-9 MB each). This is the 2021 season, pass plays only (8,557 plays).
-- Tracking columns: gameId, playId, nflId, frameId, time, jerseyNumber, team, playDirection, x, y, s, a, dis, o, dir, event. There is NO `displayName` column: player names come from `players.csv` (nflId -> displayName). `nflId` is float because the football's is null.
-- Team column name and values: `team`. Values are the club abbreviation (e.g. `TB`, `DAL`) or `football`. There is no home/away label. Offence vs defence must come from `plays.csv` possessionTeam / defensiveTeam.
-- How the football is labelled: `team == "football"`, `nflId` null, `jerseyNumber` null. It is the only row type with null nflId.
-- plays.csv has possessionTeam / defensiveTeam: yes, both.
-- plays.csv has ballCarrierId: NO. There is no ball-carrier column anywhere. The carrier is derived as specified in "Ball carrier" under Core maths.
-- plays.csv has playDescription: yes, `playDescription`. Other useful plays.csv columns: passResult (C, I, S, R, IN), playResult, absoluteYardlineNumber.
-- Exact event names: catch = `pass_outcome_caught`; tackle = `tackle`; out of bounds = `out_of_bounds`; fumble = `fumble` (also `fumble_offense_recovered`, `qb_strip_sack`); touchdown = NO event exists (404 plays mention TOUCHDOWN in playDescription only). Other events: ball_snap, autoevent_ballsnap, pass_forward, autoevent_passforward, pass_arrived, pass_tipped, autoevent_passinterrupted, pass_outcome_incomplete, dropped_pass, first_contact, handoff, lateral, run, play_action, qb_sack, man_in_motion, shift, line_set, huddle_break_offense, penalty_flag.
-- Event coverage is sparse across all 122 files: `pass_outcome_caught` appears in only 23 plays, `tackle` in 3, `out_of_bounds` in 1, `fumble` in 17, `pass_arrived` in 367 and `first_contact` in 80. This is why the window starts at `pass_arrived` or `pass_outcome_caught` and ends at `first_contact`, `tackle` or `out_of_bounds`, falling back to the last frame of the play.
-- Events are repeated on every player's row for that frame (23 rows per frame), so count plays, not rows.
-- Not yet checked: whether `x`/`y` units, `dir` convention and 10 fps match the Conventions section.
+- Raw files in `data/raw/`: `games.csv`, `players.csv`, `plays.csv`, `pffScoutingData.csv`, and `tracking/tracking_<gameId>.csv` (122 files, one per game, 5–9 MB each). This is the 2021 season, pass plays only (8,557 plays).
+- Tracking columns: gameId, playId, nflId, frameId, time, jerseyNumber, team, playDirection, x, y, s, a, dis, o, dir, event. There is NO `displayName` column; names come from `players.csv` (nflId → displayName). `nflId` is float because the football's is null.
+- Team column: `team`. Values are the club abbreviation (e.g. `TB`, `DAL`) or `football`. No home/away label. Offence vs defence comes from `plays.csv` possessionTeam / defensiveTeam.
+- Football: `team == "football"`, `nflId` null, `jerseyNumber` null. It is the only row type with a null nflId.
+- plays.csv has: possessionTeam, defensiveTeam, playDescription, passResult (C, I, S, R, IN), playResult, absoluteYardlineNumber. It has NO ballCarrierId. Coverage column name: TODO (not yet checked).
+- players.csv: columns for nflId, displayName and position: TODO (confirm exact names).
+- Events seen: ball_snap, autoevent_ballsnap, pass_forward, autoevent_passforward, pass_arrived, pass_outcome_caught, pass_outcome_incomplete, pass_tipped, autoevent_passinterrupted, dropped_pass, first_contact, tackle, out_of_bounds, fumble, fumble_offense_recovered, qb_strip_sack, qb_sack, handoff, lateral, run, play_action, man_in_motion, shift, line_set, huddle_break_offense, penalty_flag.
+- Touchdown: no event exists. 404 plays mention TOUCHDOWN in playDescription only.
+- Tracking ends at or within 2 frames of `pass_arrived`. There is no post-catch data.
+- Event coverage is sparse: `pass_arrived` in 367 plays, `pass_outcome_caught` in 23, `first_contact` in 80, `tackle` in 3, `out_of_bounds` in 1, `fumble` in 17.
+- Events repeat on every player's row for that frame (23 rows per frame). Count plays, not rows.
+- Not yet checked: whether `x`/`y` units, the `dir` convention and 10 fps match the Conventions section.
 
 ## Working rules for the agent
 

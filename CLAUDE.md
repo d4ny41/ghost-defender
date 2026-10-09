@@ -175,13 +175,18 @@ Plays that cannot be processed are skipped and logged, never written.
 
 Person 1 fills this in and keeps it current.
 
-- Tracking files: `data/raw/tracking/tracking_*.csv` (122 files). No displayName column.
-- Team column: `team` (values: TODO confirm club abbreviations plus the football label)
-- Football: TODO (team label and/or null nflId)
+- Raw files in `data/raw/`: `games.csv`, `players.csv`, `plays.csv`, `pffScoutingData.csv`, and `tracking/tracking_<gameId>.csv` (122 files, one per game, 5–9 MB each). This is the 2021 season, pass plays only (8,557 plays).
+- Tracking columns: gameId, playId, nflId, frameId, time, jerseyNumber, team, playDirection, x, y, s, a, dis, o, dir, event. There is NO `displayName` column; names come from `players.csv` (nflId → displayName). `nflId` is float because the football's is null.
+- Team column: `team`. Values are the club abbreviation (e.g. `TB`, `DAL`) or `football`. No home/away label. Offence vs defence comes from `plays.csv` possessionTeam / defensiveTeam.
+- Football: `team == "football"`, `nflId` null, `jerseyNumber` null. It is the only row type with a null nflId.
+- plays.csv has: possessionTeam, defensiveTeam, playDescription, passResult (C, I, S, R, IN), playResult, absoluteYardlineNumber. It has NO ballCarrierId. Coverage column name: TODO (not yet checked).
+- players.csv: columns for nflId, displayName and position: TODO (confirm exact names).
+- Events seen: ball_snap, autoevent_ballsnap, pass_forward, autoevent_passforward, pass_arrived, pass_outcome_caught, pass_outcome_incomplete, pass_tipped, autoevent_passinterrupted, dropped_pass, first_contact, tackle, out_of_bounds, fumble, fumble_offense_recovered, qb_strip_sack, qb_sack, handoff, lateral, run, play_action, man_in_motion, shift, line_set, huddle_break_offense, penalty_flag.
+- Touchdown: no event exists. 404 plays mention TOUCHDOWN in playDescription only.
 - Tracking ends at or within 2 frames of `pass_arrived`. There is no post-catch data.
-- plays.csv: has possessionTeam, defensiveTeam, playDescription. No ballCarrierId. passResult: TODO. Coverage column name: TODO.
-- players.csv: TODO (columns for nflId, name, position)
-- Events seen: ball_snap, pass_forward, pass_arrived, pass_outcome_caught, first_contact, tackle, out_of_bounds (TODO: full list)
+- Event coverage is sparse: `pass_arrived` in 367 plays, `pass_outcome_caught` in 23, `first_contact` in 80, `tackle` in 3, `out_of_bounds` in 1, `fumble` in 17.
+- Events repeat on every player's row for that frame (23 rows per frame). Count plays, not rows.
+- Not yet checked: whether `x`/`y` units, the `dir` convention and 10 fps match the Conventions section.
 
 ## Working rules for the agent
 
