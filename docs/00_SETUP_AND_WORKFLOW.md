@@ -49,8 +49,8 @@ Do not touch CLAUDE.md or anything in data/raw.
 
 ## Step 3 — Checkpoints
 
-**Checkpoint A** (Person 1 finishes P1-1, Person 2 finishes P2-0)
-Spend two minutes together. Person 1's physics tests pass. Person 2's mock prints `wasted_yards 11.00` for play 1. Two independent implementations agreeing on 11.00 is strong evidence that the maths is right.
+**Checkpoint A** (Person 1 finishes P1-1b, Person 2 finishes P2-0 v2)
+Spend two minutes together. Person 1's physics tests pass. Person 2's mock prints `wasted_yards 5.40` for play 1. When Person 1 later reaches P1-5, the golden-play test must also give 5.40. Two independent implementations agreeing on the same number is strong evidence that the maths is right.
 
 **Checkpoint B** (Person 1 finishes P1-6, Person 2 finishes P2-3)
 Person 1 hands over `data/processed/` (copy the two CSVs; they are git-ignored). Go to `03_INTEGRATION_AND_DEMO.md`.
@@ -60,6 +60,6 @@ Record the demo, take the screenshot, write the README.
 
 ## Fallbacks if time runs short
 
-- **Full dataset too slow:** process one tracking file only (`--weeks 1`). A few hundred plays is plenty for a demo.
+- **Full dataset too slow:** process a few tracking files only (`--max-files 20`). A few hundred plays is plenty for a demo.
 - **Real-data parsing stuck:** the app still runs on mock data. If you demo on mock data, say so clearly in the video.
 - **Leaderboard (P2-5) unfinished:** skip it. The play viewer is the core deliverable.
