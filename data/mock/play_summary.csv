@@ -1,0 +1,4 @@
+gameId,playId,description,carrier_nflId,carrier_name,defender_nflId,defender_name,catch_frameId,end_frameId,end_event,ghost_speed,speed_source,t_intercept,intercept_x,intercept_y,ghost_start_x,ghost_start_y,real_dist,ghost_dist,wasted_yards,reached_carrier,contact_frameId,status
+1,1,MOCK – pure pursuit vs optimal angle,101,Mock Carrier,201,Mock Defender,1,40,tackle,8.0,play_max,1.9246,73.472,20.0,70.0,35.0,26.4,15.4,11.0,True,34,ok
+1,2,MOCK – near-optimal angle,101,Mock Carrier,201,Mock Defender,1,40,tackle,8.0,play_max,1.9246,73.472,20.0,70.0,35.0,15.2,15.4,-0.2,True,20,ok
+2,1,MOCK – carrier outruns defender,101,Mock Carrier,201,Mock Defender,1,30,last_frame,8.5,league,,,,40.0,40.0,,,,False,,no_intercept
