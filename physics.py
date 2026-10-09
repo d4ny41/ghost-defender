@@ -11,6 +11,7 @@ import numpy as np
 DT = 0.1  # seconds between tracking frames (10 fps)
 CONTACT_RADIUS = 1.0  # yards
 LEAGUE_MAX_SPEED = 8.5  # yd/s
+MAX_TARGET_DIST = 3.0  # yards
 
 _EPS = 1e-9
 
@@ -87,3 +88,45 @@ def path_length(points):
     if pts.ndim != 2 or len(pts) < 2:
         return 0.0
     return float(np.linalg.norm(np.diff(pts, axis=0), axis=1).sum())
+
+
+# --- v2: pursuit while the ball is in the air ---------------------------------
+
+
+def ghost_to_target(defender_pos, target_pos, speed, taus):
+    """Ghost positions at each `tau` (seconds since the throw), shape (n, 2).
+
+    The ghost starts at `defender_pos` and runs straight at `target_pos` at
+    `speed`, then stops there:
+        ghost(tau) = D0 + u * min(speed * tau, dist0)
+    If the start is (about) on the target, every row is the target.
+    """
+    d0 = np.asarray(defender_pos, dtype=float)
+    target = np.asarray(target_pos, dtype=float)
+    taus = np.asarray(taus, dtype=float).reshape(-1)
+
+    delta = target - d0
+    dist0 = float(np.linalg.norm(delta))
+    if dist0 < _EPS:
+        return np.tile(target, (len(taus), 1))
+
+    u = delta / dist0
+    travelled = np.minimum(speed * taus, dist0)
+    return d0 + u * travelled[:, None]
+
+
+def reach_time(defender_pos, target_pos, speed):
+    """Seconds for the ghost to reach the target, or None if speed <= 0."""
+    if speed <= 0:
+        return None
+    d0 = np.asarray(defender_pos, dtype=float)
+    target = np.asarray(target_pos, dtype=float)
+    return float(np.linalg.norm(target - d0)) / speed
+
+
+def arrival_gap(defender_pos, target_pos, speed, air_time):
+    """Ghost's distance to the target when the ball arrives: max(dist0 - V*t, 0)."""
+    d0 = np.asarray(defender_pos, dtype=float)
+    target = np.asarray(target_pos, dtype=float)
+    dist0 = float(np.linalg.norm(target - d0))
+    return max(dist0 - speed * air_time, 0.0)
